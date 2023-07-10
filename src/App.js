@@ -6,7 +6,9 @@ const App = () => {
   return (
   <> 
     <NavBar></NavBar>
-    <CategoryView></CategoryView>
+    <CategoryView>
+      
+    </CategoryView>
   </>
   )
 }

@@ -6,7 +6,7 @@ const CardList = () => {
       return (
         <>
           <h6>{`${cardInfo[i].title}`}</h6>
-          <h1>test</h1>
+           7<h1>test</h1>
         </>
         //<ProdCard title={prod.title} desc={prod.desc}></ProdCard>
       )
