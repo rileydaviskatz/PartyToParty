@@ -1,2 +1,0 @@
-# PartyToParty
-In progress site
