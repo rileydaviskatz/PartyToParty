@@ -36,28 +36,17 @@ CREATE TABLE Orders (
     BuyerID int   NOT NULL,
     TotalAmount money,
     OrderStatusID int   NOT NULL,
-    -- RENTAL OR SALE
-    TransactionType TEXT   NOT NULL,
+    -- RENTAL OR SALE 1 or 0
+    TransactionType int   NOT NULL,
+    Quantity INT NOT NULL,
+    RentalLength date NULL,
+    Overdue bool NOT NULL,
     Quantity int   NOT NULL,
     CONSTRAINT pk_Orders PRIMARY KEY (
         OrderID
      )
 );
 
-CREATE TABLE OpenOrderStatus (
-    OrderStatusID int   NOT NULL,
-    Name TEXT   NOT NULL,
-    LengthOfRental TEXT   NOT NULL,
-    InProgress bool   NOT NULL,
-    Overdue bool   NOT NULL,
-    Quantity int   NOT NULL,
-    CONSTRAINT pk_OpenOrderStatus PRIMARY KEY (
-        OrderStatusID
-     ),
-    CONSTRAINT uc_OpenOrderStatus_Name UNIQUE (
-        Name
-    )
-);
 
 ALTER TABLE ListedItems ADD CONSTRAINT fk_ListedItems_SellerID FOREIGN KEY(SellerID)
 REFERENCES Customer (CustomerID);
@@ -71,12 +60,5 @@ REFERENCES Customer (CustomerID);
 ALTER TABLE Orders ADD CONSTRAINT fk_Orders_BuyerID FOREIGN KEY(BuyerID)
 REFERENCES Customer (CustomerID);
 
-ALTER TABLE Orders ADD CONSTRAINT fk_Orders_OrderStatusID FOREIGN KEY(OrderStatusID)
-REFERENCES OpenOrderStatus (OrderStatusID);
-
-ALTER TABLE OpenOrderStatus ADD CONSTRAINT fk_OpenOrderStatus_Quantity FOREIGN KEY(Quantity)
-REFERENCES Orders (Quantity);
-
 CREATE INDEX idx_Customer_FullName
 ON Customer (FullName);
-
